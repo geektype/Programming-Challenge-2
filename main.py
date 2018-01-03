@@ -12,12 +12,13 @@ except ImportError as e:
 	pritn("Make sure there is a config.py and is in this directory!")
 
 
-LIST = ["Hello", "dude", "really", "hope", "you", "are", "good"]
+LIST = []
 
 def basicLists():
-
+	global LIST
 	if LIST == []:
 		print("You don't have anything in your list, Let's get you started and add Stuff!")
+		print("NOTE: if you want to load from file just keep pressing enter to enter the menu")
 		input("Hit enter to start!")
 		funs.addElements(LIST)
 	while True:
@@ -41,6 +42,14 @@ def basicLists():
 			funs.remItem(LIST)
 		if choice == 4:
 			funs.saveToFile(LIST)
+		if choice == 5:
+			try:
+				LIST = funs.loadFile()
+			except Exception as e:
+				print("Error occured List not changed")
+				print(e)
+			print("List updated!")
+			input()
 		if choice == 6:
 			return None
 
