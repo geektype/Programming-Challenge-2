@@ -17,11 +17,18 @@ def stringCounter():
 	input()
 	strings = funs.loadToList("strings.txt")
 
+	indwords = 0
+	sentences = 0
 	for string in strings:
+		sentences +=1
 		words = string.split()
 		length = len(words)
-		print("'{}' has {} words".format(string, length))
-
+		indwords += length
+		print("\n '{}' has {} words".format(string, length))
+	
+	print("\n Summary:")
+	print("Total number of sentences: {}".format(sentences))
+	print("Total number of words: {}".format(indwords))
 	input()
 	return None
 
