@@ -8,12 +8,24 @@ except ImportError as e:
 try:
 	import funs
 except ImportError as e:
-	print("I failed to import the configuration File (I REALL need it!)")
-	pritn("Make sure there is a config.py and is in this directory!")
+	print("I failed to import the Function File (I REALL need it!)")
+	prinn("Make sure there is a funs.py and is in this directory!")
 
+def stringCounter():
+	system('cls')
+	print("Make sure there is a file called strings.txt and then hit enter")
+	input()
+	strings = funs.loadToList("strings.txt")
+
+	for string in strings:
+		words = string.split()
+		length = len(words)
+		print("'{}' has {} words".format(string, length))
+
+	input()
+	return None
 
 LIST = []
-
 def basicLists():
 	global LIST
 	if LIST == []:
@@ -44,7 +56,7 @@ def basicLists():
 			funs.saveToFile(LIST)
 		if choice == 5:
 			try:
-				LIST = funs.loadFile()
+				LIST = funs.loadToList("DATA.txt")
 			except Exception as e:
 				print("Error occured List not changed")
 				print(e)
@@ -54,17 +66,21 @@ def basicLists():
 			return None
 
 		input("")
+
 while True:
 	system('cls')
-	print("##################")
-	print("#1. Basic Lists  #")
-	print("#2. Quit         #")
-	print("##################")
+	print("###################")
+	print("#1. Basic Lists   #")
+	print("#2. String Counter#")
+	print("#3. Quit          #")
+	print("###################")
 	try:
 		choice = int(input("What do you want to do"))
 		if choice == 1:
 			basicLists()
-		elif choice == 2:
+		if choice == 2:
+			stringCounter()
+		elif choice == 3:
 			exit()
 	except ValueError:
 		system('cls')

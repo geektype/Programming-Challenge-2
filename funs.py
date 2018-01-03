@@ -59,17 +59,18 @@ def saveToFile(lst):
 		print("write Failed")
 	print("Write succesful!")
 	return None
-def loadFile():
+def loadToList(flname):
 	finalRes = []
 	try:
 		print("reading")
-		with open("DATA.txt") as f:
+		with open(flname) as f:
 			lines = f.readlines()
 			for item in lines:
 				finalRes.append(item.strip())
 	except Exception as e:
 		print(e)
 	return finalRes
+
 
 
 
