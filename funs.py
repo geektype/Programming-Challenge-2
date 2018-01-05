@@ -48,15 +48,16 @@ def remItem(lst):
 	print("Item Removed!")
 	input()
 	return None
-def saveToFile(lst):
+def saveToFile(lst, flname):
 	print("I will now try to save the current list to the file 'DATA.txt', make sure it is empty!")
 	try:
-		with open('DATA.txt' , 'w') as f:
+		with open(flname , 'w') as f:
 			for i in lst:
-				f.write(i + '\n')
+				f.write(str(i) + '\n')
 	except Exception as e:
 		print(e)
 		print("write Failed")
+		return None
 	print("Write succesful!")
 	return None
 def loadToList(flname):
