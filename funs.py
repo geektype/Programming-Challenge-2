@@ -60,6 +60,17 @@ def saveToFile(lst, flname):
 		return None
 	print("Write succesful!")
 	return None
+def valPass(pwd):
+        if len(pwd) > 8:
+            if (any(c.isupper() for c in pwd)):
+                if (any(c.islower() for c in pwd)):
+                    return True
+                else:
+                    return "there are No small case Letters"
+            else:
+              return "there are No capital Letters"
+        else:
+            return "the Password Has to contain ore than 8 characters"
 def loadToList(flname):
 	finalRes = []
 	try:
