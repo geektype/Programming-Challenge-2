@@ -1,6 +1,8 @@
 try:
 	from sys import exit
 	from os import system
+	from getpass import getpass
+	import os.path
 except ImportError as e:
 	print("Failed to import 1 or more libraries")
 	print(e)
@@ -11,6 +13,58 @@ except ImportError as e:
 	print("I failed to import the Function File (I REALL need it!)")
 	prinn("Make sure there is a funs.py and is in this directory!")
 
+def hackProof():
+	def openFile():
+		try:
+			cred =funs.loadToList("Cred.txt")
+		except Exception as e:
+			print("I failed to load secret.txt make sure it exists")
+			return None
+		userName = cred[0]
+		passwd = cred[1]
+
+		username = input("Enter your username")
+		password = getpass(prompt='nput your password')
+
+		if username == userName and passwd == password:
+			print("Opening File!")
+		else:
+			print("Incorrect Credentials")
+		input()
+	def genCred():
+		print("Okay it looks like you have not set your password yet so lets do that shall we?")
+		userName = input("Enter your username that you want to use:")
+#		print(funs.suggestedPass())
+		ready = False
+		while ready == False:
+			newPass = getpass(prompt='Please Enter the new password')
+			newPass1 = getpass(prompt='Please Enter the new password again')
+			if funs.valPass(newPass) == True:	
+				if newPass != newPass1:
+					print("The passwords don't match. Please try again")
+				else:ready = True
+
+			else:
+				print("Password not valid Make sure there a is small and capital letter and atleast 1 number!")
+		
+		with open('Cred.txt', 'w+') as f:
+			f.write(userName + '\n')
+			f.write(newPass + '\n')
+		return None
+	if os.path.exists('Cred.txt') == False:
+		print("File does not exist")
+		genCred()
+	while True:
+		print("########################")
+		print("#1. Open file          #")
+		print("#2. Return To menu     #")
+		print("########################")
+		choice = int(input("What do you want to do?"))
+
+		if choice == 1:
+			openFile()
+		if choice == 2:
+			return None
 def list_MinMax():
 	LIST = []
 	maxVal = int(input("Enter the maximum value for your list"))
@@ -75,6 +129,7 @@ def list_MinMax():
 			LIST = loadAndCheck()
 		if choice == 4:
 			return None
+
 def stringCounter():
 	system('cls')
 	print("Make sure there is a file called strings.txt and then hit enter")
@@ -144,7 +199,8 @@ while True:
 	print("#1. Basic Lists   #")
 	print("#2. String Counter#")
 	print("#3. Min and Max   #")
-	print("#4. Quit          #")
+	print("#4. Acces file    #")
+	print("#5. Quit          #")
 	print("###################")
 	# try:
 	choice = int(input("What do you want to do"))
@@ -154,7 +210,9 @@ while True:
 		stringCounter()
 	if choice == 3:
 		list_MinMax()
-	elif choice == 4:
+	if choice == 4:
+		hackProof()
+	elif choice == 5:
 		exit()
 	# except ValueError:
 	# 	system('cls')
