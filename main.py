@@ -28,6 +28,7 @@ def hackProof():
 
 		if username == userName and passwd == password:
 			print("Opening File!")
+			system('secret.txt')
 		else:
 			print("Incorrect Credentials")
 		input()
@@ -42,7 +43,10 @@ def hackProof():
 			if funs.valPass(newPass) == True:	
 				if newPass != newPass1:
 					print("The passwords don't match. Please try again")
-				else:ready = True
+				else:
+					with open('secret.txt', 'w+') as f:
+						f.write("This is your secret file get rid of this line and add whatever you want!")
+					ready = True
 
 			else:
 				print("Password not valid Make sure there a is small and capital letter and atleast 1 number!")
