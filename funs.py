@@ -81,6 +81,7 @@ def loadToList(flname):
 				finalRes.append(item.strip())
 	except Exception as e:
 		print(e)
+		raise e
 	return finalRes
 
 
