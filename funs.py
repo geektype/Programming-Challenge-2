@@ -1,4 +1,5 @@
 #Try importing the libraries
+# This is another comment
 try:
 	from sys import exit
 	from os import system
@@ -84,9 +85,3 @@ def loadToList(flname):
 		print(e)
 		raise e
 	return finalRes
-
-
-
-
-
-
